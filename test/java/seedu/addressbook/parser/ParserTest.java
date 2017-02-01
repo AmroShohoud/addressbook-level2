@@ -192,11 +192,14 @@ public class ParserTest {
             "add ",
             "add wrong args format",
             // no phone prefix
-            String.format("add $s $s e/$s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s $s e/$s a/$s, $s, $s, $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE,  
+                                                 Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE),
             // no email prefix
-            String.format("add $s p/$s $s a/$s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE),
+            String.format("add $s p/$s $s a/$s, $s, $s, $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, 
+                                                 Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE),
             // no address prefix
-            String.format("add $s p/$s e/$s $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, Address.EXAMPLE)
+            String.format("add $s p/$s e/$s $s, $s, $s, $s", Name.EXAMPLE, Phone.EXAMPLE, Email.EXAMPLE, 
+                                                 Block.EXAMPLE, Street.EXAMPLE, Unit.EXAMPLE, PostalCode.EXAMPLE)
         };
         final String resultMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         parseAndAssertIncorrectWithMessage(resultMessage, inputs);
@@ -213,8 +216,8 @@ public class ParserTest {
         final String invalidTagArg = "t/invalid_-[.tag";
 
         // address can be any string, so no invalid address
-        final String addCommandFormatString = "add $s $s $s a/" + Address.EXAMPLE;
-
+        final String addCommandFormatString = "add $s $s $s a/" +  Block.EXAMPLE + Street.EXAMPLE + Unit.EXAMPLE + PostalCode.EXAMPLE;        
+        
         // test each incorrect person data field argument individually
         final String[] inputs = {
                 // invalid name
@@ -258,7 +261,10 @@ public class ParserTest {
                 new Name(Name.EXAMPLE),
                 new Phone(Phone.EXAMPLE, true),
                 new Email(Email.EXAMPLE, false),
-                new Address(Address.EXAMPLE, true),
+                new Block(Block.EXAMPLE, true),
+                new Street(Street.EXAMPLE, true),
+                new Unit(Unit.EXAMPLE, true),
+                new PostalCode(PostalCode.EXAMPLE, true),
                 new UniqueTagList(new Tag("tag1"), new Tag("tag2"), new Tag("tag3"))
             );
         } catch (IllegalValueException ive) {
@@ -271,7 +277,10 @@ public class ParserTest {
                 + person.getName().fullName
                 + (person.getPhone().isPrivate() ? " pp/" : " p/") + person.getPhone().value
                 + (person.getEmail().isPrivate() ? " pe/" : " e/") + person.getEmail().value
-                + (person.getAddress().isPrivate() ? " pa/" : " a/") + person.getAddress().value;
+                + (person.getBlock().isPrivate() ? " pa/" : " a/") + person.getBlock().value
+                + (person.getStreet().isPrivate() ? " pa/" : " a/") + person.getStreet().value
+                + (person.getUnit().isPrivate() ? " pa/" : " a/") + person.getUnit().value
+                + (person.getPostalCode().isPrivate() ? " pa/" : " a/") + person.getPostalCode().value;
         for (Tag tag : person.getTags()) {
             addCommand += " t/" + tag.tagName;
         }

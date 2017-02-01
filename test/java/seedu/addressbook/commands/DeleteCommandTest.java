@@ -10,11 +10,14 @@ import org.junit.Test;
 import seedu.addressbook.common.Messages;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
-import seedu.addressbook.data.person.Address;
+import seedu.addressbook.data.person.Block;
 import seedu.addressbook.data.person.Email;
 import seedu.addressbook.data.person.Name;
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.Phone;
+import seedu.addressbook.data.person.PostalCode;
+import seedu.addressbook.data.person.Street;
+import seedu.addressbook.data.person.Unit;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.data.person.UniquePersonList.PersonNotFoundException;
 import seedu.addressbook.data.tag.UniqueTagList;
@@ -33,14 +36,17 @@ public class DeleteCommandTest {
     @Before
     public void setUp() throws Exception {
         Person johnDoe = new Person(new Name("John Doe"), new Phone("61234567", false),
-                new Email("john@doe.com", false), new Address("395C Ben Road", false), new UniqueTagList());
+                new Email("john@doe.com", false), new Block("395C", false), new Street("Ben Road", false), 
+                new Unit("#3-01", false), new PostalCode("1234", false), new UniqueTagList());
         Person janeDoe = new Person(new Name("Jane Doe"), new Phone("91234567", false),
-                new Email("jane@doe.com", false), new Address("33G Ohm Road", false), new UniqueTagList());
+                new Email("jane@doe.com", false), new Block("33G", false), new Street("Ohm Road", false), 
+                new Unit("#3-01", false), new PostalCode("1234", false), new UniqueTagList());
         Person samDoe = new Person(new Name("Sam Doe"), new Phone("63345566", false),
-                new Email("sam@doe.com", false), new Address("55G Abc Road", false), new UniqueTagList());
+                new Email("sam@doe.com", false), new Block("55G", false), new Street("Abc Road", false), 
+                new Unit("#3-01", false), new PostalCode("1234", false), new UniqueTagList());
         Person davidGrant = new Person(new Name("David Grant"), new Phone("61121122", false),
-                new Email("david@grant.com", false), new Address("44H Define Road", false),
-                new UniqueTagList());
+                new Email("david@grant.com", false), new Block("44H", false), new Street("Define Road", false), 
+                new Unit("#3-01", false), new PostalCode("1234", false), new UniqueTagList());
 
         emptyAddressBook = TestUtil.createAddressBook();
         addressBook = TestUtil.createAddressBook(johnDoe, janeDoe, davidGrant, samDoe);
@@ -65,7 +71,8 @@ public class DeleteCommandTest {
     public void execute_targetPersonNotInAddressBook_returnsPersonNotFoundMessage()
             throws IllegalValueException {
         Person notInAddressBookPerson = new Person(new Name("Not In Book"), new Phone("63331444", false),
-                new Email("notin@book.com", false), new Address("156D Grant Road", false), new UniqueTagList());
+                new Email("notin@book.com", false), new Block("156D", false), new Street("Grant Road", false), 
+                new Unit("#3-01", false), new PostalCode("1234", false), new UniqueTagList());
         List<ReadOnlyPerson> listWithPersonNotInAddressBook = TestUtil.createList(notInAddressBookPerson);
 
         assertDeletionFailsDueToNoSuchPerson(1, addressBook, listWithPersonNotInAddressBook);

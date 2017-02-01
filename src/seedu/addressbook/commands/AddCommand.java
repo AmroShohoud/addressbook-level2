@@ -34,7 +34,10 @@ public class AddCommand extends Command {
     public AddCommand(String name,
                       String phone, boolean isPhonePrivate,
                       String email, boolean isEmailPrivate,
-                      String address, boolean isAddressPrivate,
+                      String block,
+                      String street,
+                      String unit, 
+                      String postalCode, boolean isAddressPrivate,
                       Set<String> tags) throws IllegalValueException {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -44,7 +47,10 @@ public class AddCommand extends Command {
                 new Name(name),
                 new Phone(phone, isPhonePrivate),
                 new Email(email, isEmailPrivate),
-                new Address(address, isAddressPrivate),
+                new Block(block, isAddressPrivate),
+                new Street(street, isAddressPrivate),
+                new Unit(unit, isAddressPrivate),
+                new PostalCode(postalCode, isAddressPrivate),
                 new UniqueTagList(tagSet)
         );
     }

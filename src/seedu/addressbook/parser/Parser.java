@@ -107,6 +107,22 @@ public class Parser {
         if (!matcher.matches()) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+        String block;
+        String street;
+        String unit;
+        String postalCode;
+        try {
+            String address = matcher.group("address");
+            String[] addressValues = address.split(", ");
+            block = addressValues[0];
+            street = addressValues[1];
+            unit = addressValues[2];
+            postalCode = addressValues[3];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Address Entered incorrectly, make sure all components are included"
+                    + "ex: a/311, Clementi Ave 2, #02-25, 12345");
+        }
+        
         try {
             return new AddCommand(
                     matcher.group("name"),
@@ -117,7 +133,7 @@ public class Parser {
                     matcher.group("email"),
                     isPrivatePrefixPresent(matcher.group("isEmailPrivate")),
 
-                    matcher.group("address"),
+                    block, street, unit, postalCode,
                     isPrivatePrefixPresent(matcher.group("isAddressPrivate")),
 
                     getTagsFromArgs(matcher.group("tagArguments"))
