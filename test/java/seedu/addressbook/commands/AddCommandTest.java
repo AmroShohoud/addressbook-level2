@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.Test;
 
 import seedu.addressbook.data.AddressBook;
-import seedu.addressbook.data.exception.FileNotFoundException;
 import seedu.addressbook.data.exception.IllegalValueException;
 import seedu.addressbook.data.person.Address;
 import seedu.addressbook.data.person.Email;
@@ -137,12 +136,7 @@ public class AddCommandTest {
         book.addPerson(p);
         AddCommand command = new AddCommand(p);
         command.setData(book, EMPTY_PERSON_LIST);
-        try {
-            CommandResult result = command.execute();
-        }
-        catch (FileNotFoundException e) {
-            return;
-        }
+        CommandResult result = command.execute();
 
         assertFalse(result.getRelevantPersons().isPresent());
         assertEquals(AddCommand.MESSAGE_DUPLICATE_PERSON, result.feedbackToUser);
