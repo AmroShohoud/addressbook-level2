@@ -78,6 +78,17 @@ public class Person implements ReadOnlyPerson {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, tags);
     }
+    
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    public String getPrintableString(Printable... printables) {
+       String printableString = "";
+       for (Printable printable : printables) {
+           printableString += printable.getPrintableString() + " ";
+       }
+       return printableString;
+   }
 
     @Override
     public String toString() {
