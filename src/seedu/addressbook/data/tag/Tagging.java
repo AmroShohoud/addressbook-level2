@@ -1,6 +1,10 @@
 package seedu.addressbook.data.tag;
 import seedu.addressbook.data.person.Person;
 
+/**
+ * Represents an addition or deletion of a tag to a Person
+ */
+
 public class Tagging {
 
     Person person;
