@@ -45,15 +45,19 @@ public class Name {
 
     /**
      * Returns true of the other name is very similar to this name.
-     * Two names are considered similar if they are the same String.
+     * Two names are considered similar if one contains the other anywhere in its name String.
      */
      public boolean isSimilar(Name other) {
          if (this.toString().equals(other.toString())) {
              return true;
          }
-         else {
-             return false;
+         String[] names = this.toString().split(" ");
+         for (String name: names) {
+             if (other.toString().contains(name)) {
+                 return true;
+             }
          }
+         return false;
      }
     
     @Override

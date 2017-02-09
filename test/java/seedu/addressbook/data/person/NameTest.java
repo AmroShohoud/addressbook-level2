@@ -33,8 +33,28 @@ public class NameTest {
         assertTrue(testName5.isSimilar(testName6));
         
         Name testName7 = new Name("Bob");
-        Name testName8 = new Name("Bob Smith");
-        assertFalse(testName7.isSimilar(testName8));
+        Name testName8 = new Name("Bobby Smith");
+        assertTrue(testName7.isSimilar(testName8));
+        
+        Name testName9 = new Name("Bob");
+        Name testName10 = new Name("Bob Smith");
+        assertTrue(testName9.isSimilar(testName10));
+        
+        Name testName11 = new Name("Bob Robert");
+        Name testName12 = new Name("Bob Smith");
+        assertTrue(testName11.isSimilar(testName12));
+        
+        Name testName13 = new Name("Bob Smith");
+        Name testName14 = new Name("Smith Robert");
+        assertTrue(testName13.isSimilar(testName14));
+        
+        Name testName15 = new Name("Bob");
+        Name testName16 = new Name("Rob");
+        assertFalse(testName15.isSimilar(testName16));
+        
+        Name testName17 = new Name("Bob Robert");
+        Name testName18 = new Name("John Robin");
+        assertFalse(testName17.isSimilar(testName18));
     }
 
 }
