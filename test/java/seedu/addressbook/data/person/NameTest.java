@@ -23,6 +23,18 @@ public class NameTest {
         Name testName1 = new Name("Bob");
         Name testName2 = new Name("Bob");
         assertTrue(testName1.isSimilar(testName2));
+        
+        Name testName3 = new Name("Bob Smith");
+        Name testName4 = new Name("Bob Smith");
+        assertTrue(testName3.isSimilar(testName4));
+        
+        Name testName5 = new Name("Bob Robert Smith III");
+        Name testName6 = new Name("Bob Robert Smith III");
+        assertTrue(testName5.isSimilar(testName6));
+        
+        Name testName7 = new Name("Bob");
+        Name testName8 = new Name("Bob Smith");
+        assertFalse(testName7.isSimilar(testName8));
     }
 
 }
