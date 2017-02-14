@@ -79,3 +79,7 @@ Extensions:
 	4a. User declines tag change.
 		4a1. Address Book cancels tag change and notifies user.
 	Use case ends.
+
+### NFR
+Address Book can store 10000 entries.
+User receives feedback after performing any action in 5 seconds or less.
