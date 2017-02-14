@@ -51,3 +51,7 @@
 * Problem: Test fails during the very first time.<br>
   Solution: The output of the very first test run could be slightly different because the program
   creates a new storage file. Tests should pass from the 2nd run onwards.
+
+### User stories
+As a professor, I can create groups of people, so that I can group students from each class together.
+As a student, I can modify the tags of People in my address book.
