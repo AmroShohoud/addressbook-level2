@@ -42,6 +42,11 @@ public abstract class Command {
     public abstract CommandResult execute();
 
     /**
+     * @return true if command modifies data and false if not.
+     */
+    public abstract boolean isMutating();
+    
+    /**
      * Supplies the data the command will operate on.
      */
     public void setData(AddressBook addressBook, List<? extends ReadOnlyPerson> relevantPersons) {
@@ -65,4 +70,5 @@ public abstract class Command {
     public void setTargetIndex(int targetIndex) {
         this.targetIndex = targetIndex;
     }
+    
 }
