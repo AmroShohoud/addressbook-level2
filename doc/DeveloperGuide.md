@@ -54,4 +54,6 @@
 
 ### User stories
 As a professor, I can create groups of people, so that I can group students from each class together.
+As a professor, I can modify all the members of a group, so that I can make changes to all students in a class.
 As a student, I can modify the tags of People in my address book.
+ 
